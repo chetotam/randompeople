@@ -1,6 +1,12 @@
 '''Root package of randompeople app.'''
 from flask import Flask
+from flask_mongoengine import MongoEngine
+
 from .config import Config
+
+
+db = MongoEngine()
+
 
 def create_app(config=Config.DEFAULT):
     '''Create and set up Flask application instance.'''
@@ -9,5 +15,9 @@ def create_app(config=Config.DEFAULT):
 
     from .main import main
     app.register_blueprint(main)
+    from .api import api
+    app.register_blueprint(api, url_prefix='/api')
+
+    db.init_app(app)
 
     return app
