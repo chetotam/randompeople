@@ -19,10 +19,18 @@ class Member(db.EmbeddedDocument):
 class Room(db.Document):
     '''Represents group of members to choose from.'''
 
-    meta = {'collection': 'rooms'}
+    meta = {
+        'collection': 'rooms',
+        'indexes': [
+            {
+                'fields': ['members.name'],
+                'unique': True
+            }
+        ]
+    }
 
     name = db.StringField(unique=True, required=True)
-    members = db.SortedListField(db.EmbeddedDocumentField(Member), ordering='name')
+    members = db.EmbeddedDocumentListField(Member)
 
     def __init__(self, *, name, members, **kwargs):
         super().__init__(**kwargs)
