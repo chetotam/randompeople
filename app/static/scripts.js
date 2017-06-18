@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     addMemberForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        fetch('/api/v1/rooms/test/members/', {
+        fetch('https://randompeople.herokuapp.com/api/v1/rooms/test/members/', {
 	        method: 'post',
             headers: {
                 "Content-Type": "application/json"
