@@ -1,4 +1,5 @@
 '''This module defines Flask app configuration options.'''
+import os
 from enum import Enum
 
 class _BaseConfig:
@@ -15,8 +16,11 @@ class _TestingConfig(_BaseConfig):
     TESTING = True
 
 class _ProductionConfig(_BaseConfig):
-    pass
+    MONGODB_SETTINGS = {
+        'host': os.environ.get('MONGODB_URI')
+    }
 
+# TODO: mb use dict instead
 class Config(Enum):
     '''This class contains separate Flask configs for development, testing and production.'''
 
@@ -24,4 +28,4 @@ class Config(Enum):
     TESTING = _TestingConfig()
     PRODUCTION = _ProductionConfig()
 
-    DEFAULT = DEVELOPMENT
+    DEFAULT = PRODUCTION
