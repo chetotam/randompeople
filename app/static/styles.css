@@ -32,6 +32,10 @@ ul {
     margin: 0;
 }
 
+ul li {
+    display: inline;
+}
+
 article {
     height: 96px;
     width: 256px;
