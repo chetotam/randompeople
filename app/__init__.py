@@ -1,11 +1,13 @@
 '''Root package of randompeople app.'''
 from flask import Flask
 from flask_mongoengine import MongoEngine
+from flask_cors import CORS
 
 from .config import Config
 
 
 db = MongoEngine()
+cors = CORS()
 
 
 def create_app(config=Config.DEFAULT):
@@ -19,5 +21,6 @@ def create_app(config=Config.DEFAULT):
     app.register_blueprint(api, url_prefix='/api')
 
     db.init_app(app)
+    cors.init_app(app)
 
     return app
