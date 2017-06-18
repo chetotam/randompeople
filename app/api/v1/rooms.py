@@ -11,6 +11,7 @@ class Rooms(MethodView):
 
     def get(self, room_name):
         '''Return specified room as JSON.'''
+        Room(name='test', members=[])
         if room_name is None:
             return jsonify(Room.objects), 200
         else:
