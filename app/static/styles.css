@@ -56,6 +56,10 @@ article {
 article:hover {
 }
 
+button.delete-member {
+    float: right;
+}
+
 footer {
     grid-area: footer;
     display: flex; 
