@@ -2,12 +2,11 @@
 // TODO: refactor this
 
 createListItem = function(list, name) {
-    let li = document.createElement('li');
-    let article = document.createElement('article');
-    article.innerHTML = '<h2>' + name + '</h2>'
-    li.appendChild(article);
+    let liseItemTemplate = document.querySelector('#members-list-item-template');
+    let listItem = document.importNode(liseItemTemplate.content, true);
+    listItem.querySelector('.member-name').innerHTML = name;
 
-    list.appendChild(li);
+    list.appendChild(listItem);
 }
 
 updateList = function(list) {
@@ -25,10 +24,11 @@ updateList = function(list) {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
-
     let listMembers = document.querySelector('#members-list');
     let listWinners = document.querySelector('#winners-list');
+
     let addMemberForm = document.querySelector('#add-member-form');
+
     let selectWinnersButton = document.querySelector('#select-winners-button');
 
     selectWinnersButton.addEventListener('click', (event) => {
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }).catch((error) => {
 	        alert(error);
         });
-    })
+    });
 
     addMemberForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -69,7 +69,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }).catch((error) => {
 	        alert(error);
         });
-    })
+    });
+
+    listMembers.addEventListener('click', (event) => {
+        if (event.target.tagName == 'BUTTON') {
+            let listEntry = event.target.closest('li');
+            name = listEntry.querySelector('.member-name').innerHTML;
+            
+            fetch('/api/v1/rooms/test/members/' + name, {
+	            method: 'delete'
+            }).then((response) => {
+                if (response.status === 204) {
+                    listEntry.setAttribute('hidden', true);
+                }
+            }).catch(function(error) {
+	            alert(error);
+            });
+        }
+    });
 
     updateList(listMembers);
 });
