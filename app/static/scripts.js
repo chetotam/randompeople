@@ -59,7 +59,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	        })
         }).then((response) => {
             if (response.status != 409) {
-                newMember = response.json()
+                return response.json()
+            }
+            return null
+        }).then((newMember) => {
+            if (newMember) {
                 createListItem(listMembers, newMember.name)
             }
         }).catch((error) => {
