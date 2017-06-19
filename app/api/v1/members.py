@@ -48,7 +48,7 @@ class Members(MethodView):
         if not request.get_json() or not 'name' in request.get_json():
             abort(400)
 
-        new_member = Member(name=request.get_json()['name'])
+        new_member = Member(name=request.get_json()['name'].strip())
         try:
             member_exists = room_exists.members.get(name=new_member.name)
             return jsonify(member_exists), 409

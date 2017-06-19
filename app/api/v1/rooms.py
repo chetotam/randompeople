@@ -25,7 +25,7 @@ class Rooms(MethodView):
         if not request.json or not 'name' in request.json:
             abort(400)
 
-        new_room = Room(name=request.json['name'], members=[])
+        new_room = Room(name=request.json['name'].strip(), members=[])
         try:
             room_exists = Room.objects.get(name=new_room.name)
             return jsonify(room_exists), 409

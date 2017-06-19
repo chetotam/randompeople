@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-		        name: event.target.elements['name'].value
+		        name: event.target.elements['name'].value.trim()
 	        })
         }).then((response) => {
             if (response.status != 409) {
