@@ -39,6 +39,7 @@ ul {
 
 ul #winners-list {
     width: auto;
+    justify-content: center;
 }
 
 ul li {
