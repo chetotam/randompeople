@@ -37,10 +37,10 @@ class Rooms(MethodView):
         '''Delete specified room.'''
         if room_name is None:
             Room.drop_collection()
-            return 204
+            return 'no content', 204
 
         try:
             Room.objects.get(name=room_name).delete()
-            return 204
+            return 'no content', 204
         except db.DoesNotExist:
             abort(404)

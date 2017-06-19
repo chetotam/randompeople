@@ -67,11 +67,11 @@ class Members(MethodView):
         if member_name is None:
             room_exists.members = []
             room_exists.save()
-            return 204
+            return 'no content', 204
         else:
             try:
                 member_exists = room_exists.members.get(name=member_name)
                 room_exists.update(pull__members__name=member_exists.name)
-                return 204
+                return 'no content', 204
             except db.DoesNotExist:
                 abort(404)
