@@ -58,10 +58,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		        name: event.target.elements['name'].value
 	        })
         }).then((response) => {
-            alert(response.status)
-            return response.json();
-        }).then((newMember) => {
-            createListItem(listMembers, newMember.name)
+            if (response.status != 409) {
+                createListItem(listMembers, response.json().name)
+            }
         }).catch((error) => {
 	        alert(error);
         });
