@@ -53,11 +53,13 @@ article {
     margin: 10px;
 }
 
-article:hover {
+button.delete-member {
+    visibility: hidden;
+    float: right;
 }
 
-button.delete-member {
-    float: right;
+ul#members-list article:hover button.delete-member {
+    visibility: visible;
 }
 
 footer {
