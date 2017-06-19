@@ -37,6 +37,10 @@ ul {
     flex-wrap: wrap;
 }
 
+ul #winners-list {
+    width: auto;
+}
+
 ul li {
 }
 
