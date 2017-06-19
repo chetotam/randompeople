@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		        name: event.target.elements['name'].value
 	        })
         }).then((response) => {
-            //alert(response.status)
+            alert(response.status)
             return response.json();
         }).then((newMember) => {
             createListItem(listMembers, newMember.name)
