@@ -37,7 +37,7 @@ ul {
     flex-wrap: wrap;
 }
 
-ul #winners-list {
+ul#winners-list {
     width: auto;
     justify-content: center;
 }
