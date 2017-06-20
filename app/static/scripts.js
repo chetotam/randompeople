@@ -59,8 +59,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	        })
         }).then((response) => {
             if (response.status != 409) {
+                event.target.elements['name'].value = '';
                 return response.json()
             }
+            event.target.elements['name'].setCustomValidity('Name already exists.');
             return null
         }).then((newMember) => {
             if (newMember) {
